@@ -23,6 +23,8 @@
  """
 
 import orekit_jpype
+import jpype
+jpype.addClassPath('../custom_jars/orekit_addons.jar')
 
 orekit_jpype.initVM()
 # orekit_jpype.initVM(vmargs='-Xcheck:jni,-verbose:jni,-verbose:class,-XX:+UnlockDiagnosticVMOptions')
@@ -50,7 +52,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 from orekit_jpype.pyhelpers import setup_orekit_curdir, download_orekit_data_curdir
-download_orekit_data_curdir()
+#download_orekit_data_curdir()
 
 setup_orekit_curdir()
 from jpype import JImplements, JOverride, JFloat, JDouble
@@ -74,7 +76,7 @@ class MyEventCounter():
     def resetState(self, detector, oldState):
         return oldState
 
-mycounter = MyEventCounter()
+mycounter = EventCounter()
 
 @JImplements(AdaptableInterval)
 class MyAdaptableInterval():
@@ -162,7 +164,7 @@ class EventDetectorTest(unittest.TestCase):
         finalState = kepler.propagate(initialDate.shiftedBy(60 * 60 * 24.0 * 15))
 
         print(detector.passes)
-        self.assertEqual(52, mycounter.events)
+        self.assertEqual(52, mycounter.getCount())
 
     def tearDown(self) -> None:
         import time

@@ -9,19 +9,22 @@ import org.orekit.propagation.events.handlers.EventHandler;
 
 public class EventCounter implements EventHandler{
     
-        private int count = 0;
+        private int events = 0;
     
         public void init(SpacecraftState s0, AbsoluteDate t) {
-            count = 0;
+            events = 0;
         }
     
         public Action eventOccurred(SpacecraftState s, EventDetector detector, boolean increasing) {
-            count++;
+            if (increasing) {
+                events++;
+                return Action.CONTINUE;
+            }
             return Action.CONTINUE;
         }
     
         public int getCount() {
-            return count;
+            return events;
         }
     
 }
