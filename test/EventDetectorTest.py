@@ -41,6 +41,7 @@ from org.hipparchus.geometry.euclidean.threed import Vector3D
 from org.orekit.propagation.events import EventDetector, AdaptableInterval
 from org.hipparchus.ode.events import Action
 from org.orekit.propagation.events import AbstractDetector
+from org.orekit.propagation.events import NewElevationDetector
 from org.orekit.custom import EventCounter
 
 from math import radians
@@ -56,25 +57,6 @@ from orekit_jpype.pyhelpers import setup_orekit_curdir, download_orekit_data_cur
 
 setup_orekit_curdir()
 from jpype import JImplements, JOverride, JFloat, JDouble
-
-@JImplements(EventHandler)
-class MyEventCounter():
-    def __init__(self):
-        self.events = 0
-
-    @JOverride
-    def init(self, initialstate, target, detector):
-        print(initialstate, target, detector)
-
-    @JOverride
-    def eventOccurred(self, s, detector, increasing):
-        if increasing:
-            self.events +=  1
-        return Action.CONTINUE
-
-    @JOverride
-    def resetState(self, detector, oldState):
-        return oldState
 
 mycounter = EventCounter()
 
@@ -165,6 +147,41 @@ class EventDetectorTest(unittest.TestCase):
 
         print(detector.passes)
         self.assertEqual(52, mycounter.getCount())
+
+    def testNewJavaElevationDetector(self):
+        initialDate = AbsoluteDate(2014, 1, 1, 23, 30, 00.000, TimeScalesFactory.getUTC())
+        inertialFrame = FramesFactory.getEME2000()  # inertial frame for orbit definition
+        position = Vector3D(-6142438.668, 3492467.560, -25767.25680)
+        velocity = Vector3D(505.8479685, 942.7809215, 7435.922231)
+        pvCoordinates = PVCoordinates(position, velocity)
+        initialOrbit = KeplerianOrbit(pvCoordinates,
+                                      inertialFrame,
+                                      initialDate,
+                                      Constants.WGS84_EARTH_MU)
+
+        kepler = KeplerianPropagator(initialOrbit)
+
+        ITRF = FramesFactory.getITRF(IERSConventions.IERS_2010, True)
+        earth = OneAxisEllipsoid(Constants.WGS84_EARTH_EQUATORIAL_RADIUS,
+                                 Constants.WGS84_EARTH_FLATTENING,
+                                 ITRF)
+
+        # Station
+        longitude = radians(45.0)
+        latitude = radians(25.0)
+        altitude = 0
+        station1 = GeodeticPoint(latitude, longitude, float(altitude))
+        sta1Frame = TopocentricFrame(earth, station1, "station 1")
+
+        elevation = math.radians(5.0)
+
+        counter_new = EventCounter()
+        detector = NewElevationDetector(sta1Frame).withConstantElevation(elevation).withHandler(counter_new)
+        kepler.addEventDetector(detector)
+
+        finalState = kepler.propagate(initialDate.shiftedBy(60 * 60 * 24.0 * 15))
+
+        self.assertEqual(52, counter_new.getCount())
 
     def tearDown(self) -> None:
         import time
