@@ -19,4 +19,11 @@ The project can then be installed with:
 pip install .
 ```
 
+After this, a new project is installed, MyOrekitProject that has custom classes that are written in java, but not part of orekit library itself. In the current example, these are:
+* NewElevationDetector
+* EventCounter
+
+See the examples in the test directory.
+
+
 Created by Petrus Hyvönen, 2024
