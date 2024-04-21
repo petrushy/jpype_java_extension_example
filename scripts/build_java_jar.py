@@ -5,6 +5,7 @@ import jpype
 import subprocess
 import glob
 
+jar_name = 'src/MyOrekitProject/jars/orekit_addons.jar'
 
 def build_jar():
     # Get the path to the original JAR files, used for compiling
@@ -35,7 +36,7 @@ def build_jar():
         print("Output:", result.stdout)
 
         # Package the output files as a JAR file
-        jar_name = 'custom_jars/orekit_addons.jar'
+        
         jar_command = 'jar'
         jar_args = ['cf', jar_name, '-C', 'java-src', '.']
         jar_result = subprocess.run([jar_command] + jar_args, check=True, text=True, capture_output=True)
@@ -57,7 +58,7 @@ def cleanup_class_files():
 
 def cleanup_jar_file():
     # Remove the JAR file
-    jar_file = 'custom_jars/orekit_addons.jar'
+    jar_file = jar_name
     if os.path.exists(jar_file):
         os.remove(jar_file)
 

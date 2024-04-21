@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "MyOrekitProject"
+version = "0.1.0"
+description = "Exmaple Orekit Python Project with inclusion of custom java classes" # Add your description
+authors = [{name = "Petrus Hyvönen", email = "petrus.hyvonen@gmail.com"}]
+license = {text = "License :: OSI Approved :: Apache Software License"}
+readme = "README.md"
+requires-python = ">=3.6"
+
+
+dependencies = [
+    'Jpype1'
+]
+
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["MyOrekitProject", "MyOrekitProject.jars"] # Specify your package(s) here
+include-package-data = true
+
+[tool.setuptools.package-data]
+MyOrekitProject = ["jars/*.jar"]
+

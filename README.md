@@ -6,3 +6,8 @@ The possibility to incorporate custom java classes is a feature that enables to 
 
 The project takes java code in the java-src directory and compiles it into a jar file. This jar file is then included in the python project and can be accessable from the python code.
 
+The project can be installed with:
+```pip install .
+```
+
+Created by Petrus Hyvönen, 2024
