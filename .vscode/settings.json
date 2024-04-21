@@ -21,5 +21,10 @@
         "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-core-3.0-javadoc.jar",
         "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/rugged-3.0.jar",
         "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/rugged-3.0-javadoc.jar"
-    ]
+    ],
+    "python.testing.pytestArgs": [
+        "test"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
