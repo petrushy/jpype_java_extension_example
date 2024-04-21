@@ -1,0 +1,25 @@
+{
+    "java.project.sourcePaths": [
+        "java-src"
+    ],
+    "java.project.referencedLibraries": [
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/orekit-12.0.2.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/orekit-12.0.2-javadoc.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-stat-3.0.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-stat-3.0-javadoc.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-optim-3.0.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-optim-3.0-javadoc.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-ode-3.0.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-ode-3.0-javadoc.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-geometry-3.0.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-geometry-3.0-javadoc.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-fitting-3.0.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-fitting-3.0-javadoc.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-filtering-3.0.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-filtering-3.0-javadoc.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-core-3.0.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/hipparchus-core-3.0-javadoc.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/rugged-3.0.jar",
+        "/home/sepehy/Development/Orekit/orekit_jpype/orekit_jpype/jars/rugged-3.0-javadoc.jar"
+    ]
+}
