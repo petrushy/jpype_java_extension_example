@@ -1,32 +1,9 @@
 # -*- coding: utf-8 -*-
 
-"""
-
-/* Copyright 2014 SSC
- * Licensed to CS Syst��mes d'Information (CS) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * CS licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-
- """
-
 import orekit_jpype
 import jpype
-jpype.addClassPath('../custom_jars/orekit_addons.jar')
 
-orekit_jpype.initVM()
+orekit_jpype.initVM(additional_classpaths=['custom_jars/orekit_addons.jar'])
 # orekit_jpype.initVM(vmargs='-Xcheck:jni,-verbose:jni,-verbose:class,-XX:+UnlockDiagnosticVMOptions')
 
 from org.orekit.frames import FramesFactory, TopocentricFrame
@@ -182,10 +159,6 @@ class EventDetectorTest(unittest.TestCase):
         finalState = kepler.propagate(initialDate.shiftedBy(60 * 60 * 24.0 * 15))
 
         self.assertEqual(52, counter_new.getCount())
-
-    def tearDown(self) -> None:
-        import time
-        time.sleep(2.0)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(EventDetectorTest)
