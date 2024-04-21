@@ -3,8 +3,9 @@
 import orekit_jpype
 import jpype
 
+# orekit_jpype.initVM(vmargs='-Xcheck:jni,-verbose:jni,-verbose:class,-XX:+UnlockDiagnosticVMOptions', additional_classpaths=['custom_jars/orekit_addons.jar'])
 orekit_jpype.initVM(additional_classpaths=['custom_jars/orekit_addons.jar'])
-# orekit_jpype.initVM(vmargs='-Xcheck:jni,-verbose:jni,-verbose:class,-XX:+UnlockDiagnosticVMOptions')
+
 
 from org.orekit.frames import FramesFactory, TopocentricFrame
 from org.orekit.bodies import OneAxisEllipsoid, GeodeticPoint
